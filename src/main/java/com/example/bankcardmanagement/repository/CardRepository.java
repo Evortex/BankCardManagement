@@ -23,7 +23,9 @@ public interface CardRepository extends JpaRepository<Card, Long>, JpaSpecificat
     Optional<Card> findByCardNumberEncrypted(String cardNumberEncrypted);
 
     @Query("SELECT c FROM Card c WHERE c.owner.id = :ownerId AND (:status is null OR c.status = :status)")
-    Page<Card> findByOwnerIdAndStatus(@Param("ownerId") Long ownerId, @Param("status") CardStatus status, Pageable pageable);
+    Page<Card> findByOwnerIdAndStatus(@Param("ownerId") Long ownerId,
+                                      @Param("status") CardStatus status,
+                                      Pageable pageable);
 
     //@Query("SELECT c FROM Card c WHERE c.expiryDate < CURRENT_DATE AND c.status = 'ACTIVE'")
     List<Card> findExpiredActiveCards();
