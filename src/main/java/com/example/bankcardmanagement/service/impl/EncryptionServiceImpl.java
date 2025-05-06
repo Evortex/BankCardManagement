@@ -24,7 +24,6 @@ public class EncryptionServiceImpl implements EncryptionService {
     @Value("${app.encryption.key}")
     private String secretKeyString;
 
-    private SecretKey secretKey;
     private Cipher encryptCipher;
     private Cipher decryptCipher;
 
@@ -35,7 +34,7 @@ public class EncryptionServiceImpl implements EncryptionService {
             if (decodedKey.length != 16 && decodedKey.length != 24 && decodedKey.length != 32) {
                 throw new IllegalArgumentException("Неверная длина ключа AES: " + decodedKey.length * 8 + " бит. Должно быть 128, 192 или 256.");
             }
-            secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, ALGORITHM);
+            SecretKey secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, ALGORITHM);
 
             encryptCipher = Cipher.getInstance(TRANSFORMATION);
             encryptCipher.init(Cipher.ENCRYPT_MODE, secretKey);

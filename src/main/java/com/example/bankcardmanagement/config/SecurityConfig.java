@@ -23,7 +23,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -33,16 +33,14 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationEntryPoint jwtAuthenticationEntryPoint() {
-        return (request, response, authException) -> {
-            response.sendError(HttpStatus.UNAUTHORIZED.value(), authException.getMessage());
-        };
+        return (request, response, authException) ->
+                response.sendError(HttpStatus.UNAUTHORIZED.value(), authException.getMessage());
     }
 
     @Bean
     public AccessDeniedHandler jwtAccessDeniedHandler() {
-        return (request, response, accessDeniedException) -> {
-            response.sendError(HttpStatus.FORBIDDEN.value(), accessDeniedException.getMessage());
-        };
+        return (request, response, accessDeniedException) ->
+                response.sendError(HttpStatus.FORBIDDEN.value(), accessDeniedException.getMessage());
     }
 
     @Bean
