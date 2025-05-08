@@ -1,4 +1,11 @@
-FROM eclipse-temurin:17-jdk
+FROM openjdk:17-jdk-slim
+
+LABEL authors="creator"
+
 WORKDIR /app
-COPY target/bankcard-management.jar app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-Dspring.profiles.active=docker", "-jar", "app.jar"]
