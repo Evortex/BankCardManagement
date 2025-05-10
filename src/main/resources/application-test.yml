@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  liquibase:
+    enabled: false
+
+app:
+  jwt:
+    secret: K4kMouU6Lx/FAa1YuaO+UFFzPjUvnzUkBMvvKWuJhXDvcHHznWR0yH6mn9rFjpC/NpesxDgj+QNkxs0T3YffNQ==
+    expiration-ms: 86400000

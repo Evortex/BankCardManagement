@@ -15,7 +15,14 @@ spring:
         format_sql: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
 
-jwt:
-  secret: secret-key
-  expiration: 86400000 # 1 день
+app:
+  encryption:
+    key: AAECAwQFBgcICQoLDA0ODw==
+  card:
+    expiry-check:
+      cron: 0 0 1 * * ?
+  jwt:
+    secret: K4kMouU6Lx/FAa1YuaO+UFFzPjUvnzUkBMvvKWuJhXDvcHHznWR0yH6mn9rFjpC/NpesxDgj+QNkxs0T3YffNQ==
+    expiration-ms: 86400000
